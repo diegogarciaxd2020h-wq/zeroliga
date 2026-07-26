@@ -1,28 +1,80 @@
 script.js
-const button = document.querySelector(".generate");
+let categoriaSeleccionada = "";
 
-const response = document.querySelector(".response p");
+const botones = document.querySelectorAll(".options button");
 
+const botonGenerar = document.querySelector(".generate");
 
-button.addEventListener("click",()=>{
-
-
-let frases=[
-
-"Podrías decir: Me parece que hablar contigo siempre mejora mi día 😏",
-
-"Prueba con algo divertido: Creo que necesito una explicación... ¿cómo haces para caer tan bien?",
-
-"Una opción romántica: Me gusta la energía que transmites, es difícil no querer conocerte más."
-
-];
+const respuesta = document.querySelector(".response p");
 
 
-let random =
-frases[Math.floor(Math.random()*frases.length)];
+// Seleccionar categoría
+
+botones.forEach((boton)=>{
+
+    boton.addEventListener("click",()=>{
+
+        categoriaSeleccionada = boton.innerText;
 
 
-response.innerHTML=random;
+        botones.forEach((b)=>{
+            b.classList.remove("selected");
+        });
+
+
+        boton.classList.add("selected");
+
+    });
+
+});
+
+
+// Generar respuesta
+
+botonGenerar.addEventListener("click",()=>{
+
+
+    const texto = document.querySelector("textarea").value;
+
+
+    if(texto.trim() === ""){
+
+        respuesta.innerHTML =
+        "Primero escribe una situación para ayudarte 💜";
+
+        return;
+
+    }
+
+
+    if(categoriaSeleccionada === ""){
+
+        respuesta.innerHTML =
+        "Selecciona primero qué tipo de respuesta quieres 💜";
+
+        return;
+
+    }
+
+
+
+    let frases = [
+
+    "Podrías responder: Creo que eres una persona interesante, me gustaría conocerte más 😏",
+
+    "Una opción sería: No sé por qué, pero hablar contigo tiene algo diferente 😊",
+
+    "Podrías decir: Me gusta tu energía, creo que podríamos tener una buena conversación 💜"
+
+    ];
+
+
+
+    let frase =
+    frases[Math.floor(Math.random()*frases.length)];
+
+
+    respuesta.innerHTML = frase;
 
 
 });
