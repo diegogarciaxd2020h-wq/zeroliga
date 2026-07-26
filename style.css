@@ -140,3 +140,12 @@ footer{
     font-size:13px;
 
 }
+.selected{
+
+    background:#8b5cf6 !important;
+
+    color:white;
+
+    transform:scale(1.03);
+
+}
